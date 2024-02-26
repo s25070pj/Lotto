@@ -18,7 +18,7 @@ public class RandomNumberGenerator implements RandomNumberGenerable {
             winningNumbers.add(generateRandomNumber());
         }
 
-        return null;
+        return winningNumbers;
     }
 
     private boolean isQuantityOfNumbersLowerThanSix(Set<Integer> winningNumbers){
