@@ -12,6 +12,10 @@ class RandomNumberGenerableTest implements  RandomNumberGenerable{
         generatedNumbers = Set.of(1,2,3,4,5,6);
     }
 
+    public RandomNumberGenerableTest(Set<Integer> generatedNumbers){
+        this.generatedNumbers = generatedNumbers;
+    }
+
     @Override
     public Set<Integer> generateSixRandomNumbers() {
         return generatedNumbers;
