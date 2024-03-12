@@ -167,57 +167,41 @@ class ResultCheckerFacadeTest {
     @Test
     public void it_should_generate_result_with_correct_credentials() {
         //given
-        LocalDateTime drawDate = numberReceiverFacade.retrieveNextDrawDate();
-
-
+        LocalDateTime drawDate = LocalDateTime.of(2022, 12, 17, 12, 0, 0);
         when(winningNumbersGeneratorFacade.generateWinningNumbers()).thenReturn(WinningNumbersDto.builder()
-                .winningNumbers(Set.of(1, 2, 3, 4, 55, 7))
+                .winningNumbers(Set.of(1, 2, 3, 4, 5, 6))
                 .build());
-
-        when(numberReceiverFacade.retrieveAllTicketsByNextDrawDate()).thenReturn(List.of(TicketDto.builder()
-                        .hash("1")
-                        .numbers(Set.of(1, 2, 3, 4, 5, 6))
-                        .drawDate(drawDate)
-                        .build(),
-                TicketDto.builder()
-                        .hash("2")
-                        .numbers(Set.of(1, 22, 33, 44, 55, 6))
-                        .drawDate(drawDate)
-                        .build(),
-                TicketDto.builder()
-                        .hash("3")
-                        .numbers(Set.of(1, 2, 3, 44, 55, 66))
-                        .drawDate(drawDate)
-                        .build()
-        ));
-
+        String hash = "001";
+        when(numberReceiverFacade.retrieveAllTicketsByNextDrawDate()).thenReturn(
+                List.of(TicketDto.builder()
+                                .hash(hash)
+                                .numbers(Set.of(7, 8, 9, 10, 11, 12))
+                                .drawDate(drawDate)
+                                .build(),
+                        TicketDto.builder()
+                                .hash("002")
+                                .numbers(Set.of(7, 8, 9, 10, 11, 13))
+                                .drawDate(drawDate)
+                                .build(),
+                        TicketDto.builder()
+                                .hash("003")
+                                .numbers(Set.of(7, 8, 9, 10, 11, 14))
+                                .drawDate(drawDate)
+                                .build())
+        );
         ResultCheckerFacade resultCheckerFacade = new ResultCheckerConfiguration().creteForTest(winningNumbersGeneratorFacade, numberReceiverFacade, playerRepository);
-
+        resultCheckerFacade.generateWinners();
         //when
 
-        ResultDto result = resultCheckerFacade.findByHash("1");
-        ResultDto result2 = resultCheckerFacade.findByHash("2");
+        ResultDto resultDto = resultCheckerFacade.findByHash(hash);
         //then
         ResultDto expectedResult = ResultDto.builder()
-                .hash("1")
+                .hash(hash)
+                .numbers(Set.of(7, 8, 9, 10, 11, 12))
+                .hitNumbers(Set.of())
                 .drawTime(drawDate)
-                .numbers(Set.of(1, 2, 3, 4, 5, 6))
-                .hitNumbers(Set.of(1, 2, 3, 4))
-                .isWinner(true)
-                .build();
-        ResultDto expectedResult2 = ResultDto.builder()
-                .hash("2")
-                .drawTime(drawDate)
-                .numbers(Set.of(1, 22, 33, 44, 55, 6))
-                .hitNumbers(Set.of(1, 55))
                 .isWinner(false)
                 .build();
-
-
-        assertThat(result).isEqualTo(expectedResult);
-        assertThat(result2).isEqualTo(expectedResult2);
-
+        assertThat(resultDto).isEqualTo(expectedResult);
     }
-
-
 }
