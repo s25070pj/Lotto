@@ -1,5 +1,6 @@
 package com.example.lotto.domain.numbergenerator;
 
+import com.example.lotto.domain.numbergenerator.dto.OneRandomNumberResponseDto;
 import com.example.lotto.domain.numbergenerator.dto.WinningNumbersDto;
 import com.example.lotto.domain.numberreceiver.NumberReceiverFacade;
 import org.junit.jupiter.api.Test;
@@ -17,14 +18,16 @@ import static org.mockito.Mockito.when;
 class WinningNumbersGeneratorFacadeTest {
 
     private final WinningNumbersRepository winningNumbersRepository = new WinningNumbersRepositoryTest();
+    private final OneNumberFetcher fetcher = new SecureOneNumberFetcher();
+
     NumberReceiverFacade numberReceiverFacade = mock(NumberReceiverFacade.class);
 
     @Test
     public void it_should_return_set_of_required_size() {
         //given
-        RandomNumberGenerable generator = new RandomNumberGenerator();
+        RandomNumberGenerable generator = new RandomNumberGenerator(fetcher);
 
-        when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
+                when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
         WinningNumbersGeneratorFacade numbersGenerator = new NumberGeneratorConfiguration().createForTest(generator, winningNumbersRepository, numberReceiverFacade);
         //when
         WinningNumbersDto generatedNumbers = numbersGenerator.generateWinningNumbers();
@@ -36,7 +39,7 @@ class WinningNumbersGeneratorFacadeTest {
     @Test
     public void it_should_return_set_of_required_size_within_required_range() {
         //given
-        RandomNumberGenerable generator = new RandomNumberGenerableTest();
+        RandomNumberGenerable generator = new RandomNumberGenerator(fetcher);
 
         when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
         WinningNumbersGeneratorFacade numbersGenerator = new NumberGeneratorConfiguration().createForTest(generator, winningNumbersRepository, numberReceiverFacade);
