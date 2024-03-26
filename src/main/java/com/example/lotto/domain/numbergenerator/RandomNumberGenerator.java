@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-@AllArgsConstructor
 public class RandomNumberGenerator implements RandomNumberGenerable {
 
     private static final int LOWER_BOUND = 1;
