@@ -1,5 +1,4 @@
 package com.example.lotto.domain.numbergenerator;
-
 import com.example.lotto.domain.numbergenerator.dto.WinningNumbersDto;
 import com.example.lotto.domain.numberreceiver.NumberReceiverFacade;
 import org.junit.jupiter.api.Test;
@@ -17,6 +16,8 @@ import static org.mockito.Mockito.when;
 class WinningNumbersGeneratorFacadeTest {
 
     private final WinningNumbersRepository winningNumbersRepository = new WinningNumbersRepositoryTest();
+
+
     NumberReceiverFacade numberReceiverFacade = mock(NumberReceiverFacade.class);
 
     @Test
@@ -24,7 +25,7 @@ class WinningNumbersGeneratorFacadeTest {
         //given
         RandomNumberGenerable generator = new SecureRandomNumberGenerator();
 
-        when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
+                when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
         WinningNumbersGeneratorFacade numbersGenerator = new NumberGeneratorConfiguration().createForTest(generator, winningNumbersRepository, numberReceiverFacade);
         //when
         WinningNumbersDto generatedNumbers = numbersGenerator.generateWinningNumbers();
@@ -36,7 +37,7 @@ class WinningNumbersGeneratorFacadeTest {
     @Test
     public void it_should_return_set_of_required_size_within_required_range() {
         //given
-        RandomNumberGenerable generator = new RandomNumberGenerableTest();
+        RandomNumberGenerable generator = new SecureRandomNumberGenerator();
 
         when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
         WinningNumbersGeneratorFacade numbersGenerator = new NumberGeneratorConfiguration().createForTest(generator, winningNumbersRepository, numberReceiverFacade);
