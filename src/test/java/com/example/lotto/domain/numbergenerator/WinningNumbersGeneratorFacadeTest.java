@@ -22,7 +22,7 @@ class WinningNumbersGeneratorFacadeTest {
     @Test
     public void it_should_return_set_of_required_size() {
         //given
-        RandomNumberGenerable generator = new RandomNumberGenerator();
+        RandomNumberGenerable generator = new SecureRandomNumberGenerator();
 
         when(numberReceiverFacade.retrieveNextDrawDate()).thenReturn(LocalDateTime.now());
         WinningNumbersGeneratorFacade numbersGenerator = new NumberGeneratorConfiguration().createForTest(generator, winningNumbersRepository, numberReceiverFacade);
