@@ -1,6 +1,7 @@
 package com.example.lotto.domain.numbergenerator;
 
 import com.example.lotto.domain.numbergenerator.dto.OneRandomNumberResponseDto;
+import com.example.lotto.domain.numbergenerator.dto.SixRandomNumbersDto;
 import lombok.AllArgsConstructor;
 
 import java.security.SecureRandom;
@@ -19,7 +20,7 @@ public class RandomNumberGenerator implements RandomNumberGenerable {
         this.client = client;
     }
     @Override
-    public Set<Integer> generateSixRandomNumbers() {
+    public SixRandomNumbersDto generateSixRandomNumbers() {
         Set<Integer> winningNumbers = new HashSet<>();
 
         while (isQuantityOfNumbersLowerThanSix(winningNumbers)){
@@ -28,7 +29,9 @@ public class RandomNumberGenerator implements RandomNumberGenerable {
             winningNumbers.add(randomNumber);
         }
 
-        return winningNumbers;
+        return SixRandomNumbersDto.builder()
+                .numbers(winningNumbers)
+                .build();
     }
 
     private boolean isQuantityOfNumbersLowerThanSix(Set<Integer> winningNumbers){

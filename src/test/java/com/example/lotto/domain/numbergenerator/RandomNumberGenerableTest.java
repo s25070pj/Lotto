@@ -1,5 +1,7 @@
 package com.example.lotto.domain.numbergenerator;
 
+import com.example.lotto.domain.numbergenerator.dto.SixRandomNumbersDto;
+
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +19,9 @@ class RandomNumberGenerableTest implements  RandomNumberGenerable{
     }
 
     @Override
-    public Set<Integer> generateSixRandomNumbers() {
-        return generatedNumbers;
+    public SixRandomNumbersDto generateSixRandomNumbers() {
+        return SixRandomNumbersDto.builder()
+                .numbers(generatedNumbers)
+                .build();
     }
 }
