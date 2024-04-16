@@ -6,15 +6,15 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class RandomNumberGenerableTest implements  RandomNumberGenerable{
+class RandomNumberGenerableTest implements  RandomNumberGenerable {
 
     private final Set<Integer> generatedNumbers;
 
     public RandomNumberGenerableTest() {
-        generatedNumbers = Set.of(1,2,3,4,5,6);
+        generatedNumbers = Set.of(1, 2, 3, 4, 5, 6);
     }
 
-    public RandomNumberGenerableTest(Set<Integer> generatedNumbers){
+    public RandomNumberGenerableTest(Set<Integer> generatedNumbers) {
         this.generatedNumbers = generatedNumbers;
     }
 
