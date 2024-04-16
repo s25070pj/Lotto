@@ -1,5 +1,6 @@
-package com.example.lotto.domain.numbergenerator;
+package com.example.lotto.infrastructure.numbergenerator.http;
 
+import com.example.lotto.domain.numbergenerator.RandomNumberGenerable;
 import com.example.lotto.domain.numbergenerator.dto.SixRandomNumbersDto;
 import lombok.AllArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;

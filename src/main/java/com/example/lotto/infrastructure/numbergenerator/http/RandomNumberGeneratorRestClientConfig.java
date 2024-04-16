@@ -1,6 +1,7 @@
-package com.example.lotto.domain.numbergenerator;
+package com.example.lotto.infrastructure.numbergenerator.http;
 
 
+import com.example.lotto.domain.numbergenerator.RandomNumberGenerable;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;

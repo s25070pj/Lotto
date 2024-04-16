@@ -1,4 +1,4 @@
-package com.example.lotto.domain.numbergenerator;
+package com.example.lotto.infrastructure.numbergenerator.http;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.DefaultResponseErrorHandler;
