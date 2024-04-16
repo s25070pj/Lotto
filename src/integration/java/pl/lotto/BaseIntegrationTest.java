@@ -24,7 +24,7 @@ import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMoc
 @AutoConfigureMockMvc
 @Testcontainers
 
-public class BaseIntegrationTest{
+public class BaseIntegrationTest {
 
     @Autowired
     public MockMvc mockMvc;
@@ -43,13 +43,9 @@ public class BaseIntegrationTest{
             .build();
 
     @DynamicPropertySource
-    public static void propertyOverride(DynamicPropertyRegistry registry){
+    public static void propertyOverride(DynamicPropertyRegistry registry) {
         registry.add("spring.data.mongo.uri", mongoDBcontainer::getReplicaSetUrl);
-//        registry.add("offer.http.client.config.uri", () -> WIRE_MOCK_HOST);
-//        registry.add("offer.http.client.config.port", () -> wireMockServer.getPort());
+        registry.add("lotto.number-generator.http.client.config.port", () -> wireMockServer.getPort());
+        registry.add("lotto.number-generator.http.client.config.uri", () -> WIRE_MOCK_HOST);
     }
-
-
-
-
 }
