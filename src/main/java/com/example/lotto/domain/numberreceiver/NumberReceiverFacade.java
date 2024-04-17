@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
+
 public class NumberReceiverFacade {
 
     private final NumberValidator numberValidator;

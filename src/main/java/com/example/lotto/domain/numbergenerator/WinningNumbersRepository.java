@@ -1,5 +1,7 @@
 package com.example.lotto.domain.numbergenerator;
 
+import org.springframework.stereotype.Repository;
+
 import java.time.LocalDateTime;
 import java.util.Optional;
 

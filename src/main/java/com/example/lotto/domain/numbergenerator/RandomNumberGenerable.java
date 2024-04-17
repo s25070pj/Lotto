@@ -5,5 +5,5 @@ import com.example.lotto.domain.numbergenerator.dto.SixRandomNumbersDto;
 import java.util.Set;
 
 public interface RandomNumberGenerable {
-    SixRandomNumbersDto generateSixRandomNumbers();
+    SixRandomNumbersDto generateSixRandomNumbers(int count, int lowerBound, int upperBound);
 }
