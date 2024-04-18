@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Builder
 @ConfigurationProperties(prefix = "lotto.number-generator.http.client.config")
 public record RandomNumberGeneratorRestClientConfigurationProperties(String uri,
-                                                                     long port,
+                                                                     int port,
                                                                      long connectionTimeout,
                                                                      long readTimeout) {
 }
