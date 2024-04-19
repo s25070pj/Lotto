@@ -28,6 +28,7 @@ public class WinningNumbersGeneratorFacade {
 
         return WinningNumbersDto.builder()
                 .winningNumbers(winningNumbers)
+                .date(nextDrawDate)
                 .build();
     }
 
