@@ -11,10 +11,6 @@ import java.util.Optional;
 @Configuration
 public class NumberGeneratorConfiguration {
 
-    @Bean
-    NumberReceiverFacade numberReceiverFacade(){
-        return new NumberReceiverFacade(null, null, null, null);
-    }
 
     @Bean
     WinningNumbersRepository winningNumbersRepository(){

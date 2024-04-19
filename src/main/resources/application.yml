@@ -16,3 +16,4 @@ lotto:
           port: 80
           connectionTimeout: 5000
           readTimeout: 5000
+    lotteryRunOccurence: "*/5 * * * * *"
